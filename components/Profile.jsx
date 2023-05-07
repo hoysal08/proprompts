@@ -1,7 +1,7 @@
 import React from "react";
 import PromptCard from "./PromptCard";
 
-function Profile({ name, desc, data, handleedit, handledelete }) {
+function Profile({ name, desc, data, handleEdit, handleDelete }) {
   return (
     <section className="w-full">
       <h1 className="head_text text-left">
@@ -14,8 +14,8 @@ function Profile({ name, desc, data, handleedit, handledelete }) {
         (<PromptCard
           key={post._id}
           post={post}
-          handleEdit={()=>handleedit && handleedit(post)}
-          handleDelete={()=>handledelete(post)}
+          handleEdit={()=>handleEdit && handleEdit(post)}
+          handleDelete={()=>handleDelete(post)}
         />)
       )}
     </div>
