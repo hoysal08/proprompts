@@ -1,9 +1,26 @@
-import React from 'react'
+import React from "react";
+import PromptCard from "./PromptCard";
 
-function Profile() {
+function Profile({ name, desc, data, handleedit, handledelete }) {
   return (
-    <div>Profile</div>
-  )
+    <section className="w-full">
+      <h1 className="head_text text-left">
+        {" "}
+        <span className="blue_gradient">{name} Profile</span>
+      </h1>
+      <p className="desc text-left">{desc}</p>
+      <div className="mt-10 prompt_layout">
+      {data.map((post) => 
+        (<PromptCard
+          key={post._id}
+          post={post}
+          handleEdit={()=>handleedit && handleedit(post)}
+          handleDelete={()=>handledelete(post)}
+        />)
+      )}
+    </div>
+    </section>
+  );
 }
 
-export default Profile
+export default Profile;
