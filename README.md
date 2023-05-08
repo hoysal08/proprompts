@@ -37,5 +37,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 //3.11.26
 
 
-TBD:
-Impletement View others profiles
+https://proprompts.vercel.app/
