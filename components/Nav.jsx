@@ -24,6 +24,12 @@ const Nav = () => {
     getProvidersList();
   }, []);
 
+  useEffect(()=>{
+    if(!session?.user){
+      router.push("/");
+    }
+  },[session])
+
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
@@ -44,7 +50,7 @@ const Nav = () => {
             <Link href="/create-prompt" className="black_btn">
               Create Post
             </Link>
-            <button type="button" onClick={()=>{signOut();router.push("/")}} className="outline_btn">
+            <button type="button" onClick={()=>{signOut()}} className="outline_btn">
               SignOut
             </button>
             <Link href="/profile">
@@ -110,6 +116,7 @@ const Nav = () => {
                   onClick={() => {
                     setToggleDropdown(false);
                     signOut();
+                    
                   }}
                 >
                   Sign Out
