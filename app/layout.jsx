@@ -3,6 +3,7 @@ import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 import Head from "next/head";
 import favicon from "./favicon.ico"
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
   title: "ProPrompts",
@@ -21,6 +22,7 @@ const RootLayout = ({ children }) => {
           <main className="app">
             <Nav />
             {children}
+            <Analytics />
           </main>
         </Provider>
       </body>
