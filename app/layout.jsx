@@ -1,14 +1,18 @@
 import "@styles/globals.css";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
+import Head from "next/head";
+import favicon from "./favicon.ico"
 
 export const metadata = {
   title: "ProPrompts",
   description: "Discover & Share AI prompts",
 };
+
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
+      <link rel="shortcut icon" href={favicon.src} />
       <body suppressHydrationWarning={true}>
         <Provider>
           <div className="main">
