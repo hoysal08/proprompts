@@ -6,21 +6,47 @@ import PromptCard from "./PromptCard";
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
     <div className="mt-16 prompt_layout">
-      {data.map((post) => 
-        (<PromptCard
+      {data.map((post) => (
+        <PromptCard
           key={post._id}
           post={post}
           handleTagClick={handleTagClick}
-        />)
-      )}
+        />
+      ))}
     </div>
   );
 };
+
 const Feed = () => {
   const [searchText, setsearchTest] = useState("");
+  const [searchresults, setsearchresults] = useState([]);
+
   const [posts, setPosts] = useState([]);
 
-  const handlesearchchange = (e) => {};
+  const fliterposts = (searchip) => {
+
+    const regexpression = new RegExp(searchip, "i");
+    
+    return posts.filter((item) => 
+      regexpression.test(item.creator.username) ||
+        regexpression.test(item.prompt) ||
+        regexpression.test(item.tag)
+    );
+  };
+
+  const handlesearchchange = (e) => {
+    setsearchTest(e.target.value);
+    setTimeout(() => {
+      const searchreturnresults=fliterposts(e.target.value)
+      setsearchresults(searchreturnresults);
+    }, [500]);
+  };
+
+  const handleTagClick=(textip)=>{
+    setsearchTest(textip);
+    const searchreturnresults=fliterposts(textip)
+    setsearchresults(fliterposts(textip));
+  }
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -39,11 +65,20 @@ const Feed = () => {
           placeholder="Search for a tag or a username"
           value={searchText}
           onChange={handlesearchchange}
+          onPaste={handlesearchchange}
           required
           className="search_input peer"
         />
       </form>
-      <PromptCardList data={posts} handleTagClick={() => {}} />
+      {searchText? (
+        <div>
+          <PromptCardList data={searchresults} handleTagClick={() => {}} />
+        </div>
+      ) : (
+        <div>
+          <PromptCardList data={posts} handleTagClick={handleTagClick} />
+        </div>
+      )}
     </section>
   );
 };
