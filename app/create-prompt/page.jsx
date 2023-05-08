@@ -35,13 +35,17 @@ const CreatePrompt = () => {
     }
   };
   return (
-    <Form
+    <div>
+
+    {session?.user.id ?(<Form
       type="Create"
       post={post}
       setPost={setpost}
       submitting={submitting}
       handleSubmit={createPromptsubmit}
-    />
+    />):(<p className="desc text-center">Please Login to create Post</p>)}
+     </div>
+
   );
 };
 
